@@ -8,6 +8,20 @@ LinkedList::~LinkedList() {
 }
 void LinkedList::push_front(int v) { head_ = new Node(v, head_); }
 void LinkedList::remove_evens() {
+    Node* curr = head_;
+    Node* prev = nullptr;
+    while (curr) {
+        if (curr->value%2 == 0) {
+            Node* temp = curr;
+            prev->next = curr->next;
+            delete temp;
+            curr = prev->next;
+            prev = curr;
+        } else {
+            prev = curr;
+            curr = curr->next;
+        }
+    }
     // TODO: implement
 }
 std::string LinkedList::to_string() const {
